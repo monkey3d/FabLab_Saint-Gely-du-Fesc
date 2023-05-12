@@ -1,3 +1,4 @@
+# ignore ALL .lock files
 *.lock
 
 nohup.out
