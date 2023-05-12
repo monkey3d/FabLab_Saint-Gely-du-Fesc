@@ -1,0 +1,68 @@
+{#
+ * This file is a part of the fablab_ portal package.
+ * 
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : security/login.html.twig - date : 11 oct. 2022
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'app' %}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block app_central %}
+<section class="container-fluid">
+	<header class="mb-auto">
+	
+	</header>
+    <article class="d-flex align-items-center justify-content-center app-text-blue01-site" style="height: 550px">
+        <form method="post">
+        {#
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+        #}
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+        
+            <h1 class="h3 text-center">{{ 'user.title.sign-in' | trans({}, 'user') }}</h1>
+            
+            <div class="form-group">
+            	<label class="form-label" for="inputUsername">{{ 'user.prop.username' | trans({}, 'user') }}</label>
+            	<div class="input-group mb-3">
+    				<span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
+                	<input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" aria-describedby="usernameHelp"
+                		placeholder="{{ 'user.placeholder.username' | trans({}, 'user') }}" required autofocus>
+            	</div>
+    			<small id="usernameHelp" class="form-text text-muted">{{ 'user.msg.advice' | trans({}, 'user') }}</small>
+          	</div>
+          	<div class="form-group">
+            	<label class="form-label" for="inputPassword" class="visually-hidden">{{ 'user.prop.password' | trans({}, 'user') }}</label>
+            	<div class="input-group mb-3">
+            		<span class="input-group-text" id="basic-addon1"><i class="bi bi-lock-fill"></i></span>
+                	<input type="password" name="password" id="inputPassword" autocomplete="password" class="form-control"
+                		placeholder="{{ 'user.placeholder.password' | trans({}, 'user') }}" required> {# required #}
+                	</div>
+          	</div>
+            
+            <div class="form-check">
+        		<input type="checkbox" id="remember_me" name="_remember_me" class="form-check-input" checked/>
+        		<label for="remember_me" class="form-check-label">{{ 'user.prop.remember_me'| trans({}, 'user') }}</label>
+            </div>
+       
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            {{ action('submit', 'sign_in', '', {}) | raw }}
+    
+        </form>
+    </article>
+    {{ parent() }}
+</section>
+{% endblock app_central%}

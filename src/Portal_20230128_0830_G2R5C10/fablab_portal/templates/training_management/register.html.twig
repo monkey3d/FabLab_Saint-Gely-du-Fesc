@@ -1,0 +1,46 @@
+{% trans_default_domain 'training' %}
+
+{% extends 'layout_base.html.twig' %}
+
+{% block title %}{{ 'training.module.name' | trans | title }}{% endblock %}
+
+{% block head %}
+	{{ parent() }}
+{% endblock head %}
+
+{% block stylesheets %}{{ parent() }}{% endblock %}
+
+{% block inner_central_app_central %}
+
+<aside id="inner_central" class="col-md-10">
+{% set route, role, button_name =
+    ['training_management_home'],
+	['ROLE_USER'],
+	[app_buttons['list']]
+%}
+
+{{ include ("common/_header.html.twig",
+    	{	'domain': 'training',
+    		'route_root': 'user_profile',
+    	    'module': "training.module.name" | trans,
+    	    'title': 'training.title.register' | trans,
+    	    'logo': 'app/Logo_FabLab_SG03.png',
+    	    'alt_logo': '' | trans,
+    	})
+}}
+	<header class="col-md-12 text-center">
+	
+	</header>
+	{{ app.user.entry.attributes.givenName[0] }}, tu es maintenant inscrit à la formation intitulée "{{ train.title }}"
+	du {{ train.dateStartTime | date("d/m/Y") }} 
+	à {{ train.dateStartTime | date("H:i") }}
+	qui se tiendra à "{{ train.place }}".<br>
+	Le formateur pour cette session est {{ train.former }}.
+	<br>
+	Merci de bien noter ce rendez-vous dans ton agenda.<br>
+	En cas d'empêchement, prévenir ton référent, le formateur ou à défaut un membre du bureau pour remettre la place disponible.<br>
+	Comme indiqué dans le Réglement Intérieur, le manquement à une formation sans information est contraire aux principes de respect et de partage de l'association.<br>
+	
+</aside>
+{% endblock inner_central_app_central %}
+

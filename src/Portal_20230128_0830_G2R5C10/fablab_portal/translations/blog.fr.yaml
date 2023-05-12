@@ -1,0 +1,6 @@
+
+blog:
+    module:
+        name: "Le blog"
+    title:
+        home: "Le blog"
