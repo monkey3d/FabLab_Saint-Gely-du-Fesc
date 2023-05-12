@@ -25,4 +25,6 @@
 
 Normalement sur github une demande de pull est apparue et une branche a était créer avec votre code.
 
-*11: Faire la demande de push
+* 11: Faire la demande de push
+* 12: Puis merge la branche créer avec la branche main
+* 13: Créer une release sur la branche créer pour afficher la dernière version du code.
