@@ -1,0 +1,66 @@
+{#
+ * This file is a part of the fablab portal package.
+ *
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : home/documentary.html.twig - date : 14 jan. 2022
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'app' %}
+
+{% extends 'layout_base.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block app_central %}
+<section class="container-fluid">
+	<article class="container">
+        <header class="col-md-12 text-center">
+        	<h2 class="app-text-blue01-site"><strong>{{ 'menu.introduce.get_member' | trans }}</strong></h2>
+        </header>
+        <div class="row">
+            
+    		<div class="col align-self-center border border-5 rounded border-info">
+                <h3>
+                Pour devenir membre, prendre contact avec le bureau du Lab :
+                <div class="list-group">
+                	<a href="mailto:contact@fablabsaintgely.org" class="list-group-item list-group-item-action">
+    					via la boite mail <span class="badge bg-info rounded">contact@fablabsaintgely.org</span>
+    				</a>
+                	<li class="list-group-item">en venant à une réunion du lab (voir agenda dans actualités)</li>
+                	<li class="list-group-item">en venant dans les locaux du lab aux heures d'ouverture (prochainement)</li>
+                </div>
+                Effectuez le paiement de votre cotisation par virement.<br>
+                L’adhésion est valide une année de date à date.<br>
+                Actuellement l'adhésion est fixée à 50 € pour un particulier et à 150 € pour une entreprise.
+                </h3>
+        	</div>
+        	<div class="col align-self-center border border-5 rounded border-danger">
+                <h3>
+                <strong>Important</strong> : Pour identifier l'auteur d'un versement, merci de préciser par mail à 
+                <a href="mailto:contact@fablabsaintgely.org"><span class="badge bg-info rounded">contact@fablabsaintgely.org</span></a>
+                la référence du versement, sa date, votre nom, prénom et l'adresse mail où vous souhaitez recevoir les informations générales du Lab.<br>
+                Vous pouvez compléter par d'autres informations telles qu'un numéro de téléphone, une adresse postale, etc.<br>
+                Prochainement vous aurez accès à votre espace membre via l'adresse mail communiquée et vous y retrouverez vos informations.
+                </h3>
+            </div>
+        </div>
+        <div class="col align-self-center border border-5 rounded border-info">
+        	<img src="{{ asset('build/images/app/RIB_CIC.jpg') }}" class="card-img-top img-thumbnail border border-success" alt="rib">
+        </div>
+	</article>
+
+</section>
+
+{% endblock app_central %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock javascripts %}

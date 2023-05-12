@@ -1,0 +1,57 @@
+{#
+ * This file is a part of the fablab_ portal package.
+ * 
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : document_management/category/document._generic.html.twig - date : 16 oct. 2022
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'document' %}
+
+{% extends 'layout_base.html.twig' %}
+
+{% block title %}{{ 'document.module.name' | trans | title }}{% endblock %}
+
+{% block head %}
+	{{ parent() }}
+	<meta name="description" content="L'espace documentaire du FabLab.">
+{% endblock head %}
+
+{% block stylesheets %}{{ parent() }}{% endblock %}
+
+{% block app_central %}
+
+{% set route, role, button_name =
+    [],
+	[],
+	[]
+%}
+
+{{ include ("common/_header.html.twig",
+    	{	'domain': 'document',
+    		'route_root': 'document_management_home',
+    	    'module': "document.module.name" | trans,
+    	    'title': "category.title.list" | trans,
+    	    'logo': 'document/logo_document_management.jpg',
+    	    'alt_logo': 'document.alt.logo' | trans,
+    	})
+}}
+
+<section class="container-fluid">
+	<article class="container-fluid">
+		<header class="col-md-12 text-center">
+        	{{ include ('common/_paging.html.twig', {'route': 'document_list'}) }}
+        </header>
+        <div class="row">
+        {%  for category in objects %}
+    		<div class="col-md-2 mb-3 d-flex align-items-stretch">
+    			{{ include ('document_management/category/_list.html.twig') }}
+    		</div>
+    	{% endfor %}
+        </div>
+    </article>
+</section>
+{% endblock app_central %}

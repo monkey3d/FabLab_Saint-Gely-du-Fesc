@@ -1,0 +1,52 @@
+{#
+ * This file is a part of the fablab portal package.
+ *
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : user/profile.html.twig - date : 3 oct. 2021
+ 
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'site' %}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block stylesheets %}{{ parent() }}{% endblock %}
+
+{% block inner_central_app_central %}
+	<aside id="inner_central" class="col-md-10">
+		<header class="col-md-12 text-center">
+        	<h2 class="app-text-blue01-site"><strong>{{ 'site.title.functions' | trans }}</strong></h2>
+        </header>
+        <div class="row justify-content-center">
+			<div class="col-md-2 rounded-pill bg-light">
+				<a href="{{ path('ldap_members_list', {'param': 0}) }}">
+					<p class="text-center fw-bold">{{ 'site.title.users_management' | trans }}<br><span class="label label-info"></span></p>
+				</a>
+			</div>
+			<div class="col-md-2 rounded-pill bg-light">
+				<a href="{{ path('site_management_home') }}">
+					<p class="text-center fw-bold">{{ 'site.title.status' | trans }}<br><span class="label label-info"></span></p>
+				</a>
+			</div>
+			<div class="col-md-2 rounded-pill bg-light">
+				<a href="{{ path('training_management_home') }}">
+					<p class="text-center fw-bold">{{ 'site.title.training_management' | trans }}<br><span class="label label-info"></span></p>
+				</a>
+			</div>
+			<div class="col-md-2 rounded-pill bg-light">
+				<a href="http:\\12.9.0.111\dolibarr\htdocs" target="_blank">
+					<p class="text-center fw-bold">{{ 'site.title.dolibarr' | trans }}<br><span class="label label-info"></span></p>
+				</a>
+			</div>
+		</div>
+	</aside>
+{% endblock inner_central_app_central %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock javascripts %}

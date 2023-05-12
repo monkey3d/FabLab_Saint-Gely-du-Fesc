@@ -1,0 +1,7 @@
+# KnpMenuBundle Configuration
+# 15/09/2021 : - fait manuellement
+knp_menu:
+    twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
+        template: KnpMenuBundle::menu.html.twig
+    templating: false # if true, enables the helper for PHP templates
+    default_renderer: twig # The renderer to use, list is also available by default 

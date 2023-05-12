@@ -1,0 +1,22 @@
+{#
+ * This file is a part of the fablab portal package.
+ *
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : user/customer_area.html.twig - date : 10 oct. 2021
+ 
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'user' %}
+
+<div class="col-md-12 text-center text-white font-weight-bold app-bg-green01-site">
+	<h5>{{ 'user.title.customer_area_block' | trans }}</h5>
+	<h6>
+        {{ 'user.msg.logged_in_as' | trans({'%username%': app.user.username}) }}<br>
+        <a href="{{ path('app_logout') }}">{{ 'user.msg.logout' | trans }}</a><br>
+        {# <a href="{{ path('app_reset_password') }}">{{ 'user.msg.reset_password' | trans }}</a> #}
+        {# <a href="{{ path('edit_my_profile') }}">{{ 'user.msg.edit_my_profile' | trans }}</a> #}
+	</h6>
+</div>

@@ -1,0 +1,15 @@
+
+
+site:
+    alt:
+        logo: "Site"
+    module:
+        name: "Gestion du site"
+    prop:
+        opening_status: "Statut d'ouverture"
+    title:
+        dolibarr: "Accéder à Dolibarr"
+        functions: "Vos fonctions"
+        status: "Gestion des locaux"
+        training_management: "Gestion des formations"
+        users_management: "Gestion des utilisateurs"

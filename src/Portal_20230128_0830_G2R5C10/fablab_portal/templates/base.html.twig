@@ -1,0 +1,214 @@
+{#
+ * This file is a part of the fablab portal package.
+ *
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : base.html.twig - date : 14 sept. 2021
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+<!DOCTYPE html>
+{% trans_default_domain 'app' %}
+<html>
+    <head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="robots" content="all, follow">
+        <meta name="author" content="Claude Migne">
+        <meta name="description" content="Venez découvrir, vous former aux machines numériques et les utiliser pour réaliser vos projets dans l'ambiance conviviale de partage du fablab de Saint-Gély du Fesc">
+    	<meta name="keywords" content="fablab, fab lab, maker, diy, Saint-Gély, I3D, laser, découpe, électronique, numérique">
+        <title>{% block title %}{{ app_name }}{% endblock title %}</title>
+        
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+            <!-- Renders a link tag (if your module requires any CSS)
+                 <link rel="stylesheet" href="build/app.css"> -->
+        {% endblock stylesheets %}
+    {% endblock head %}
+    </head>
+    <body>
+        {% for modal in ['modalAddress', 'modalOpeningHours' ] %}
+            {% include 'home/generic_modal.html.twig' with {'id': modal} %}
+        {% endfor %}
+        {#---------------------------------------------------------------------------------------------------------------------------#}
+        {% block app_header %}
+    	<article class="container-fluid">
+        	<header class="card-group">
+    			<div class="card text-white">
+    				<div class="card-body app-bg-green01-site">
+    					<h3 id="id-menu-contact" class="card-title app-text-shadow">
+    						<i class="bi bi-geo-fill"> 
+    							<strong>{{ app_organization }} {{ app_site }}</strong>
+    						</i>
+    					</h3>
+    					<p class="card-text"></p>
+    				</div>	
+    			</div>
+    			<div class="card text-white">
+    				<div class="card-body app-bg-green01-site" style="height:30px;margin-top:0px;padding-top:0px;">
+    					{% for type in ['info', 'success', 'warning', 'danger'] %}
+    					<h4 class="card-title"></h4>
+        					{% for message in app.session.flashbag.get(type) %}
+            					<div id="alert{{ type }}" class="alert alert-{{ type }} fade show" role="alert">{{ type }} : {{ message }}
+            						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            					</div>
+        					{% endfor %}
+    					{% endfor %}			
+    				</div>
+    			</div>
+
+    			{% if openingStatus.isOpen == false %}
+    			<div class="card text-warning">
+    				<div class="card-body app-bg-green01-site">		
+    					<h3 id="id-menu-opening-hours" class="card-title app-text-shadow text-end">
+    						<i class="bi bi-door-closed-fill"> 
+    							<strong>{{ 'app.title.close' | trans }}</strong>
+    						</i>
+    					</h3>
+    				</div>
+    			</div>
+    			{% else %}
+    			<div class="card text-white">
+    				<div class="card-body app-bg-green01-site">		
+    					<h3 id="id-menu-opening-hours" class="card-title app-text-shadow text-end">
+    						<i class="bi bi-door-open-fill"> 
+    							<strong>{{ 'app.title.open' | trans }}</strong>
+    						</i>
+    					</h3>
+    				</div>
+    			</div>
+    			{% endif %}
+            </header>
+        </article>
+        {% endblock app_header %}
+        {#---------------------------------------------------------------------------------------------------------------------------#}
+        {% block app_horizontal_menu %}
+        <section id="horizontal_menu" class="container-fluid rounded">
+			<header>
+				<nav class="navbar navbar-expand-lg navbar-light py-0" style="border-color:#132c86;border-style:inset;"> {# #ffa31a #}
+					<a class="navbar-brand py-0" href="{{ path('homepage') }}">
+        				<img width="125" height="50" src="{{ asset('build/images/app/Logo_FabLab_SG03.png') }}" class="img-fluid">
+      				</a>
+      				{# + 16/01/2022 : ajout du hamburger #}
+      				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      					<span class="navbar-toggler-icon"></span>
+    				</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    {% set mainMenu = knp_menu_get('mainMenu', [], {'locale': app.request.locale} ) %}
+        			{{ knp_menu_render('mainMenu',
+        			    {
+        			    	'currentClass': 'nav-item',
+        			    	'template': 'menu/knp_menu.html.twig',
+        			    }
+        			) }}
+        			{% set memberMenu = knp_menu_get('memberMenu', [], {'locale': app.request.locale}) %}
+        			{{ knp_menu_render('memberMenu',
+        			    {
+        			    	'currentClass': 'nav-item',
+        			    	'template': 'menu/knp_menu.html.twig'
+        			    }
+        			) }}
+        			</div>
+				</nav>
+			</header>
+		</section>
+        {% endblock app_horizontal_menu %}
+        {#---------------------------------------------------------------------------------------------------------------------------#}
+        {% block app_central %}
+        <section id="central_section" class="container-fluid">
+        	<div class="row">
+        	{% block inner_left_app_central %}
+            	{% if is_granted('ROLE_USER') %}
+                	<aside id="inner_left" class="col-md-2">
+                		{{ include ('user/customer_area.html.twig', ignore_missing = false) }}
+                		{{ include ('user/dashboard.html.twig', ignore_missing = false) }}
+                	</aside>
+                {% else %}
+                	<aside id="inner_left" class="col-md-2"></aside>
+                {% endif %}
+            {% endblock inner_left_app_central %}
+            
+            {% block inner_central_app_central %}
+            	<aside id="inner_central" class="col-md-10"></aside>
+        	{% endblock inner_central_app_central %}
+        	</div>
+        	{{ include ("common/_partners.html.twig") }}
+        </section>
+        {% endblock app_central %}
+        {#---------------------------------------------------------------------------------------------------------------------------#}
+        {% block app_footer %}
+    	<footer id="app_footer" class="navbar fixed-bottom justify-content-center">
+    		<div class="col-md-4"></div>
+			<div class="col-md-7">
+    			<strong class="app-text-green01-site">
+    			- {{ app_organization }} {{ app_name }}
+        		- {{ 'app.copyright' | trans }} - {{ "now"|date("Y") }} 
+        		- {{ 'app.version' | trans }} : {{ portal.version }}
+        		- {{ 'app.site' | trans }} : {{ app_site }} -
+        		</strong>
+        	</div>
+        	<div id="back-to-top" class="col-md-1" style="visibility:hidden;">{{ app_action('button', 'back_to_top', "", {}) | raw }}</div>
+      	</footer>
+		{% endblock app_footer %}
+		{#---------------------------------------------------------------------------------------------------------------------------#}
+		{% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('common') }}
+            <script>
+            const alerts = document.querySelectorAll('[class*="alert-"]')
+            for (const alert of alerts) {
+                setTimeout( function() {
+                    const bootstrapAlert = bootstrap.Alert.getOrCreateInstance(alert);
+                    bootstrapAlert.close();
+                }, 5000);
+            }
+            </script>
+
+            <script>
+            window.addEventListener("DOMContentLoaded", (event) => {
+            	let elem = document.getElementById("id-menu-contact");
+    			//console.log(elem);
+    			elem.addEventListener(
+    				"mouseover",
+    				function(event) {
+    					//event.target.style.color = "orange";
+    					var myModalEl = document.getElementById('modalAddress');
+    					//console.log(myModalEl);
+    					let myModal = new bootstrap.Modal(document.getElementById('modalAddress'), {
+    						  keyboard: false
+    					})
+    					//console.log(myModal);
+    					myModal.show();
+    				},
+    				{passive: true}
+    			);
+            });
+            </script>
+            <script>
+            window.addEventListener("DOMContentLoaded", (event) => {
+            	let elem = document.getElementById("id-menu-opening-hours");
+    			//console.log(elem);
+    			elem.addEventListener(
+    				"mouseover",
+    				function(event) {
+    					//event.target.style.color = "orange";
+    					var myModalEl = document.getElementById('modalOpeningHours');
+    					//console.log(myModalEl);
+    					let myModal = new bootstrap.Modal(document.getElementById('modalOpeningHours'), {
+    						  keyboard: false
+    					})
+    					//console.log(myModal);
+    					myModal.show();
+    				},
+    				{passive: true}
+    			);
+            });
+            </script>
+
+        {% endblock javascripts %}
+    </body>
+</html>
