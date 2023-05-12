@@ -1,0 +1,51 @@
+{#
+ * This file is a part of the fablab portal package.
+ *
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : ldap/member/list.html.twig - date : 5 oct. 2021
+ 
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'user' %}
+
+{% extends 'layout_base.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block stylesheets %}{{ parent() }}{% endblock %}
+
+{% block inner_central_app_central %}
+
+<aside id="inner_central" class="col-md-10">
+{% set route, role, button_name =
+    ['ldap_member_edit'],
+	['ROLE_USER'],
+	[app_buttons['add']]
+%}
+
+{{ include ("common/_header.html.twig",
+    	{	'domain': 'user',
+    		'route_root': 'user_profile',
+    	    'module': "user.module.name" | trans,
+    	    'title': 'user.title.list' | trans,
+    	    'logo': 'app/Logo_FabLab_SG03.png',
+    	    'alt_logo': '' | trans,
+    	})
+}}
+	<header class="col-md-12 text-center">
+    	<p><h3>Nombre de membres adhérents = <span class="badge text-bg-info">{{ users | length }}</span></h3></p>
+    </header>
+    <div class="row">
+    {% for user in users %}
+    	<div class="col-md-3 mb-3 d-flex align-items-stretch">
+    	{{ include('ldap/member/_list.html.twig', {user: user}) }}
+    	</div>
+    {% endfor %}
+    </div>
+</aside>
+{% endblock inner_central_app_central %}
+
+

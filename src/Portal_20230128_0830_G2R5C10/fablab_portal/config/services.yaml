@@ -1,0 +1,96 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    portal:
+        version: G2R5C2
+    
+    # configuration ldap par défaut
+    app_ldap_host_default: my-server # my-server
+    app_ldap_port_default: 389
+    app_ldap_encryption_default: tls # accept none, ssl, tls
+    app_ldap_basedn_default: dc=example,dc=com
+    app_ldap_searchdn_default: "cn=read-only-admin,dc=example,dc=com"
+    app_ldap_searchpassword_default: password
+    
+    env(APP_LDAP_HOST): '%env(default:app_ldap_host_default:LDAP_HOST)%'
+    env(APP_LDAP_PORT): '%env(default:app_ldap_port_default:LDAP_PORT)%'
+    env(APP_LDAP_ENCRYPTION): '%env(default:app_ldap_encryption_default:LDAP_ENCRYPTION)%'
+    env(APP_LDAP_BASEDN): '%env(default:app_ldap_basedn_default:LDAP_BASEDN)%'
+    env(APP_LDAP_SEARCHDN): '%env(default:app_ldap_searchdn_default:LDAP_SEARCHDN)%'
+    env(APP_LDAP_SEARCHPASSWORD): '%env(default:app_ldap_searchpassword_default:LDAP_SEARCHPASSWORD)%'
+    
+    app.default_locale: fr
+    app.supported_locales: fr|en
+    
+    vich.path.document_content: '%env(APP_PATH_ROOT)%/nas/docpdf'
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $projectDir: '%kernel.project_dir%'
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+    portal.menu_builder:
+        class: App\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createMainMenu, alias: mainMenu } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu_builder, method: createMemberMenu, alias: memberMenu }
+    
+    # LDAP configuration : https://symfony.com/doc/current/security/ldap.html#ldap-configuration-reference
+    Symfony\Component\Ldap\Ldap:
+        arguments: ['@Symfony\Component\Ldap\Adapter\ExtLdap\Adapter']
+        tags:
+            - ldap
+    Symfony\Component\Ldap\Adapter\ExtLdap\Adapter:
+        arguments:
+            -   host: '%env(resolve:APP_LDAP_HOST)%'
+                port: '%env(resolve:APP_LDAP_PORT)%'
+                encryption: '%env(resolve:APP_LDAP_ENCRYPTION)%'
+                options:
+                    protocol_version: 3
+                    referrals: false
+    
+    # Custom LDAP User Provider
+    toto:
+        class: Symfony\Component\Ldap\Security\LdapUserProvider
+        
+    App\Security\CustomLdapUserProvider:
+        #parent: 'toto'
+        #public: true
+        arguments:
+            $ldap: '@Symfony\Component\Ldap\Ldap'
+            $baseDn: '%env(resolve:APP_LDAP_BASEDN)%'
+            $searchDn: '%env(resolve:APP_LDAP_SEARCHDN)%'
+            $searchPassword: '%env(resolve:APP_LDAP_SEARCHPASSWORD)%'
+            $defaultRoles: ['ROLE_USER'] # $defaultRoles
+            $uidKey: 'mail'
+            $filter: null
+            $passwordAttribute: null
+            $extraFields: [] 
+
+    # 04/11/2021
+    log.route.listener:
+        class: App\Listener\LogRoute
+        arguments: ['@security.token_storage', '@doctrine.orm.entity_manager']
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: log }
+
+    

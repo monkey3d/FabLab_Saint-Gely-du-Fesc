@@ -1,0 +1,151 @@
+{#
+ * This file is a part of the fablab portal package.
+ *
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : home/team.html.twig - date : 29 oct. 2021
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'app' %}
+
+{% extends 'layout_base.html.twig' %}
+
+{% block title %}{{ 'menu.introduce.team' | trans | title }}{% endblock title %}
+
+{% block head %}
+	{{ parent() }}
+	<meta name="description" content="La présentation des membres fondateurs, du bureau et du Conseil d'administration du fablab de Saint-Gély du Fesc.">
+{% endblock head %}
+
+{% block app_central %}
+
+<section class="container-fluid">
+	<article>
+		<div class="row">
+			<div class="col-md-2 text-center">
+        		<h2 class="app-text-blue01-site"><strong>Les fondateurs</strong></h2>
+        	</div>
+        	<div class="col-md-2"></div>
+        	<div class="col-md-8 text-center">
+        		<h2 class="app-text-blue01-site"><strong>Le bureau</strong></h2>
+        	</div>
+        </div>
+        {% set founders =
+            [
+            	{'name': 'Claude Alibert', 'img': 'CA.jpg', 'cv': "Formation de base : Mathématiques et CAPES en 1968. DEA de physique des semi-conducteurs.<br>
+En poste à l’université depuis 1969. Création d’un laboratoire associé au CNRS centré sur les lasers émettant dans le moyen infrarouge.
+- https://nanomir.edu.umontpellier.fr/ . Responsable de l’Atelier de Physique.<br>
+Retraité en 2003. Conseillé chez Photonis pendant 11 ans.<br>
+LabSud de 2017 à 2020. Bricole de temps en temps à Obilab" },
+                {'name': 'Claude Migne', 'img': 'CM.jpg', 'cv': "Ingénieur Télécom SudParis<br>Maîtrise Electronique - Automatique Université Orsay<br>Diplôme Directeur Projet Informatique ENST Paris<br>Carrière professionnelle essentiellement dans l'entreprise devenue Orange - Divers postes techniques et managériaux - retraité depuis octobre 2018<br>
+Originaire de Paris 17 ième, arrivé en 1988 sur Montpellier, réside à St Gély du Fesc depuis 2009<br>Inscrit au FabLab Sud de Montpellier membre du bureau étendu - dispense formation & conférence sur les outils de dessin, l'environnement Linux, les protocoles informatiques, la domotique, etc
+<br>Développe, entre autres, depuis 10 ans un système de Smart Home de A à Z: les capteurs & actionneurs à base de micro-contrôleurs + le cerveau du système : par exemple un moteur de règles from scratch / un assistant vocal (hors GAFAM) / gestion de médias audio, vidéo, multiroom, etc.<br>Passionné de cosmologie (Science des lois physiques de l'Univers, de sa formation)" },
+            ]
+        %}
+        
+        {% set board = 
+            [
+            	{'name': 'Claude Alibert', 'img': 'CA.jpg', 'office': 'Président', 'cv': "Formation de base : Mathématiques et CAPES en 1968. DEA de physique des semi-conducteurs.<br>
+En poste à l’université depuis 1969. Création d’un laboratoire associé au CNRS centré sur les lasers émettant dans le moyen infrarouge.
+- https://nanomir.edu.umontpellier.fr/ . Responsable de l’Atelier de Physique.<br>
+Retraité en 2003. Conseillé chez Photonis pendant 11 ans.<br>
+LabSud de 2017 à 2020. Bricole de temps en temps à Obilab"},
+            	{'name': 'xxxxx', 'img': 'unknown.jpg', 'office': 'Vice-Président', 'cv': ''},
+                {'name': 'Claude Migne', 'img': 'CM.jpg', 'office': 'Secrétaire', 'cv': "Ingénieur Télécom SudParis<br>Maîtrise Electronique - Automatique Université Orsay<br>Diplôme Directeur Projet Informatique ENST Paris<br>Carrière professionnelle essentiellement dans l'entreprise devenue Orange - Divers postes techniques et managériaux - retraité depuis octobre 2018<br>
+Originaire de Paris 17 ième, arrivé en 1988 sur Montpellier, réside à St Gély du Fesc depuis 2009<br>Inscrit au FabLab Sud de Montpellier membre du bureau étendu - dispense formation & conférence sur les outils de dessin, l'environnement Linux, les protocoles informatiques, la domotique, etc
+<br>Développe, entre autres, depuis 10 ans un système de Smart Home de A à Z: les capteurs & actionneurs à base de micro-contrôleurs + le cerveau du système : par exemple un moteur de règles from scratch / un assistant vocal (hors GAFAM) / gestion de médias audio, vidéo, multiroom, etc.<br>
+Passionné de cosmologie (Science des lois physiques de l'Univers, de sa formation)" },
+                {'name': 'xxxxx', 'img': 'unknown.jpg', 'office': 'Vice-Secrétaire', 'cv': ''},
+                {'name': 'Marc Cabès', 'img': 'MC.jpg', 'office': 'Trésorier', 'cv': "Ingénieur ESIM (Marseille), cursus d’abord généraliste spécialisation domaine de la Thermique (moteurs, turbines, chauffage, climatisation, habitat et énergies).<br>
+                Narbonnais de naissance, installé à Saint Gély du Fesc depuis 1989.<br>
+                Actuellement Data Analyste et Chef de Projets de datamining (exploration des données d'entreprise) à la Direction de l’Intervention de Orange (après y avoir également œuvré dans l’exploitation technique, la conduite de projets de systèmes d’information, le marketing et la stratégie des ventes, les études de marchés, l’assurance qualité, la Business Intelligence…).
+                Passionné de sciences - notamment de physique - et … de science-fiction, mais aussi de Scrabble (champion régional de Scrabble duplicate en 2012).<br>J’ai développé une appli personnelle de gestion et d’apprentissage du vocabulaire.<br>
+                Enthousiasmé par le projet de Fab Lab Saint à Gély : nous construisons avec l'un de mes fils un « Home Cockpit » de chasseur américain A10C Warthog."},
+                {'name': 'xxxxx', 'img': 'unknown.jpg', 'office': 'Vice-Trésorier', 'cv': ''}
+            ]
+        %}
+        
+        {% set CA =
+            [
+                {'name': 'Jean Barbier', 'img': 'unknown.jpg', 'cv': ""},
+                {'name': 'Michel Coat', 'img': 'Michel_Coat.jpg', 'cv': "Ingénieur en Mécanique des Fluides – DESS en sécurité informatique<br>Carrière professionnelle essentiellement chez Bosch International développement ABS.
+<br>Fin de carrière à ESMA/Supexup : administrateur système et enseignant base de données MsSQL et Oracle<br>Dispense formation & conférence sur les outils de dessin industriel comme Autodesk Fusion 360 et Siemens Solid Edge 2022, l'environnement Microsoft Windows (MCP, MCSA Serveurs).
+<br>A la retraite depuis 2013 et passionné par l’impression 3D FFF et Résine depuis plus de 10 ans."},
+                {'name': 'François Fabre', 'img': 'FF.jpg', 'cv': "Autodidacte - VAE 'Métiers de l’électronique – communications, systèmes embarqués (SE)' en cours.<br>
+Cofondateur de LABSud le FabLab de Montpellier<br>
+Gérant de MultiSystem une petite auto entreprise de mécatronique<br>
+Depuis 2019 en poste à l'IUT de Montpellier/Sète en tant que technicien dans le fablab de L'IUT Ob.i LAB.<br>
+Passionné par l'impression 3D, la mécatronique, électronique, la programmation sur  Arduino, RaspberryPi, Gnu/Linux ...<br>
+Montpelliérain de naissance et encore actuellement."},
+                {'name': 'Dimitri Goeller', 'img': 'unknown.jpg', 'cv': ''},                
+                {'name': 'Paul Lamothe', 'img': 'unknown.jpg', 'cv': "Retraité depuis 2019.<br>
+                formation Ingénieur INT et maitrise mathématique.<br>
+                Carrière de 42 ans dans la galaxie télécommunications d'Orange partagée entre France et International.<br>
+                Engagé dans la restauration d'un moulin à eau sur l'Aveyron actuellement surtout du gros œuvre (maçonnerie et charpente)."},
+                {'name': 'Christian Moulin', 'img': 'CMO.jpg', 'cv': "Né à La Baule (44) en 1950 - A Puéchabon (34150) depuis peu.<br> 
+Formation : Physicien de base (plasmas chauds), informatique IBM, Control Data, CII, Sextant Avionique, etc.. à une autre époque.<br>
+Carrière professionnelle : Ingénieur, puis chef d'entreprise automatismes d'usines, passé 25 ans en Amérique du Sud, actuellement architecte naval.<br>
+Hobby/passions : Navigation, développement informatique, électronique.<br>
+Compétences : Développement PC, applications Web, résistance des matériaux, etc... "},
+                {'name': 'Michel Villetard', 'img': 'MV.jpg', 'cv': "Né à Rouen en 1958 - installé à St Gely depuis 1998.<br>
+Formation : IUT génie électrique à Grenoble option automatisme et micro-informatique.<br>
+Carrière professionnelle : Technicien méthode Renault  en systèmes automatiques (1980-1984) - Chef d'entreprise de nautisme à Rouen (1984-1997) -  Chef de projet informatique en système de paiement (1997-2019) - retraité depuis 2019 - autoentrepreneur (développement de logiciels de gestion)<br>
+Hobby/passions : électronique - micro-informatique - président d'une association de sauvegarde d'un monument historique (12) - remise en état d'un moulin (12) à titre privé<br>
+compétences : arduino - impression 3D -  développements PC et mobiles (Windows/Linux/Android) avec langage de 5ème génération - PCSOFT
+Labsud (2018-2020) "},
+            ]
+         %}
+         
+         {% set REFERENT =
+             [
+             {'name': 'Michel Coat', 'img': 'Michel_Coat.jpg', 'cv': "Ingénieur en Mécanique des Fluides – DESS en sécurité informatique<br>Carrière professionnelle essentiellement chez Bosch International développement ABS.
+<br>Fin de carrière à ESMA/Supexup : administrateur système et enseignant base de données MsSQL et Oracle<br>Dispense formation & conférence sur les outils de dessin industriel comme Autodesk Fusion 360 et Siemens Solid Edge 2022, l'environnement Microsoft Windows (MCP, MCSA Serveurs).
+<br>A la retraite depuis 2013 et passionné par l’impression 3D FFF et Résine depuis plus de 10 ans.", 'pole': 'Print 3D'},
+             {'name': 'xxxxx', 'img': 'unknown.jpg', 'cv': '', 'pole': 'Laser Cutting'},
+             {'name': 'xxxxx', 'img': 'unknown.jpg', 'cv': '', 'pole': 'Electronic'},
+             {'name': 'Anne Migne', 'img': 'unknown.jpg', 'cv': '', 'pole': 'Community Management'},
+             {'name': 'Nicolas Polizzi', 'img': 'unknown.jpg', 'cv': '', 'pole': 'Community Management'},
+             ]
+         %}
+         
+		<div class="row row-cols-lg-auto g-4 align-items-center">
+		{% for person in founders %}
+		    {% include 'home/_inc_team.html.twig' with {'type': 'founder', 'person': person} %}
+		{% endfor %}
+            <div class="col-md-2">
+            	<div class="card" style="width: 8rem;"></div>
+            </div>
+            {% for person in board %}
+    		    {% include 'home/_inc_team.html.twig' with {'type': 'board', 'person': person} %}
+    		{% endfor %}
+        </div>
+        <hr>
+        <div class="col-md-12 text-center">
+        	<h2 class="app-text-blue01-site"><strong>Le Conseil d'Administration (hors bureau)</strong></h2>
+        </div>
+        <div class="row row-cols-lg-auto g-4 justify-content-center">
+        {% for person in CA %}
+    		   {% include 'home/_inc_team.html.twig' with {'type': 'CA', 'person': person} %}
+    	{% endfor %}
+        </div>
+        <hr>
+        <div class="col-md-12 text-center">
+        	<h2 class="app-text-blue01-site"><strong>Les référents</strong></h2>
+        </div>
+        <div class="row row-cols-lg-auto g-4 justify-content-center">
+        {% for person in REFERENT %}
+    		   {% include 'home/_inc_team.html.twig' with {'type': 'REFERENT', 'person': person} %}
+    	{% endfor %}
+        </div>
+        
+	</article>
+</section>
+
+{% endblock app_central %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock javascripts %}

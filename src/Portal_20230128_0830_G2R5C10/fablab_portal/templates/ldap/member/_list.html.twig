@@ -1,0 +1,43 @@
+{#
+ * This file is a part of the fablab portal package.
+ *
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : ldap/member/_list.html.twig - date : 18 jan. 2023
+ 
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'user' %}
+
+<div class="card text-dark mb-3 border border-info border-3 rounded-3">
+	<div class="card-body">
+	{% for key, value in user|array %}
+		{% if key != 'id' %}
+			{% if key == 'title' %}
+				<li class="small">{{ ('user.ldap.' ~ key) | trans }} : {{ (value == 0) ? 'user.ldap.man' | trans : 'user.ldap.woman' | trans}}</li>
+			{% else %}
+				{% if key == 'lastLogin' %}
+					<li class="small">{{ ('user.ldap.' ~ key) | trans }} : {{ value is empty ? '' : value|date("d/m/Y - H:i:s") }}
+				{% else %}
+					{% if key != 'verified' and key != 'trainingUsers' %}
+						<li class="small">{{ ('user.ldap.' ~ key) | trans }} : {{ value }}</li>
+					{% endif %}
+					
+				{% endif %}
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+    	<div class="text-center">
+    		<div class="btn-group" role="group" aria-label="Action Choices">
+    		{% if user.uid is defined %}	
+                {{ app_action('button', 'edit', "ldap_member_edit", {'pivotId': user.uid}) | raw }}
+        	    {{ app_action('button', 'delete', "ldap_member_delete", {'pivotId': user.uid}) | raw }}
+        	    {# {{ app_action('button', 'delete', "", {}) | raw }} #}
+        	{% endif %}
+        	</div>
+    	</div>
+	</div>
+		
+</div>

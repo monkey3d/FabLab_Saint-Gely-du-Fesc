@@ -1,0 +1,135 @@
+{#
+ * This file is a part of the fablab portal package.
+ *
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : home/news.html.twig - date : 3 nov. 2021
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'app' %}
+
+{% extends 'layout_base.html.twig' %}
+
+{% block title %}{{ 'app.menu.news' | trans | title }}{% endblock title %}
+
+{% block head %}
+	{{ parent() }}
+	<meta name="description" content="Les actualités du fablab de Saint-Gély du Fesc : les réunions, formations, ateliers.">
+{% endblock head %}
+
+{% block app_central %}
+<section class="container-fluid">
+	<article>
+		<header class="col-md-12 text-center">
+        	<h2 class="app-text-blue01-site"><strong>Actualités</strong></h2>
+        </header>
+        <div class="row">
+        	{#
+			<div class="col-md-3 mb-3 d-flex align-items-stretch">
+            	<div class="card">
+                	<img src="{{ asset('build/images/event/AG.gif') }}" class="card-img-top img-thumbnail border border-success" alt="fablab">
+                	<div class="card-body d-flex flex-column">
+                    	<h3 class="card-title text-center app-text-blue01-site">Assemblée Générale Extraordinaire</h3>
+                    	<p class="card-text text-center"><strong>Le mercredi 11 janvier 2023 de 20h00 à 22h00<br>Atelier des Projets - Salle de réunion 1 ier étage</strong>
+                    	<br>- bilan moral & financier 2022
+                    	<br>- perspectives budget 2023
+                    	<br>- activités 2023 : formations, ateliers, journées portes ouvertes, etc
+                    	<br>- sourcing machines : I3D, découpe laser, imprimante & découpe vinyle
+                    	<br>- approbation réglement intérieur : vote
+                    	<br>- révision constitution Conseil Administration : vote
+                    	<br>- pôt de début d'année
+                    	<br><h2 class="text-center app-text-blue01-site">
+                    		<strong>Venez nombreux pour connaître et faire vivre l'association</strong>
+                    		</h2>
+                    	<br><ins>Entrée libre : vote réservé aux membres</ins>
+                    	</p>
+                    	
+					</div>
+                </div>
+            </div>
+            #}
+            <div class="col-md-3 mb-3 d-flex align-items-stretch">
+            	<div class="card">
+                	<img src="{{ asset('build/images/event/Soirée_Générique.png') }}" class="card-img-top img-thumbnail border border-success" alt="fablab">
+                	<div class="card-body d-flex flex-column">
+                    	<h3 class="card-title text-center app-text-blue01-site">Les soirées du 1&#7497;&#7487; semestre 2023</h3> {# https://unicode-table.com/fr/sets/superscript-and-subscript-letters/ #}
+                    	<p class="card-text text-center"><strong>Horaires & salles & thèmes</strong>
+                    	<ul>
+                        	<li>mardi 7 février à 20h - salle Fontgrande : "Agir pour un monde numérique plus responsable" présenté par Michel Robert.</li>
+                        	<li>jeudi 9 mars à 20h - salle Fontgrande : "Les révolutions quantiques : de l’atome à l’ordinateur quantique" présenté par Jean Fesquet.</li>
+                        	<li>jeudi 6 avril à 20h - salle Fontgrande : </li>
+                        	<li>jeudi 11 mai</li>
+                        	<li>jeudi 8 juin</li>
+                        	<li>jeudi 6 juillet</li>
+                    	</ul>
+                    	<br><h4 class="text-center app-text-blue01-site">
+                    		<strong>Réservez les dates dans votre agenda</strong>
+                    		</h4>
+                    	</p>
+					</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3 d-flex align-items-stretch">
+            	<div class="card">
+                	<img src="{{ asset('build/images/event/Atelier_Des_Projets_Carte.jpg') }}" class="card-img-top img-thumbnail border border-success" alt="fablab">
+                	<div class="card-body d-flex flex-column">
+                    	<h3 class="card-title text-center app-text-blue01-site">Atelier initiation à l'électronique analogique et numérique.
+                    	</h3>
+                    	
+                    	<p class="card-text text-center">
+                    		<strong>Début année 2023, le mercredi hors période scolaire de 14h à 18h à l'Atelier des Projets - espace FabLab</strong>
+                    		<br>Précisions à venir sur les modalités
+                    	</p>
+					</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3 d-flex align-items-stretch">
+            	<div class="card">
+                	<img src="{{ asset('build/images/event/Atelier_Des_Projets_Carte.jpg') }}" class="card-img-top img-thumbnail border border-success" alt="fablab">
+                	<div class="card-body d-flex flex-column">
+                    	<h3 class="card-title text-center app-text-blue01-site">Soirées thématiques</h3>
+                    	<p class="card-text text-center">
+                    		<strong>Thèmes envisagés : la domotique, la smart home, la robotique, ...</strong>
+                    		<br>Précisions à venir sur les modalités
+                    	</p>
+					</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3 d-flex align-items-stretch">
+            	<div class="card">
+                	<img src="{{ asset('build/images/event/Logiciels_Numériques_01.jpg') }}" class="card-img-top img-thumbnail border border-success" alt="fablab">
+                	<div class="card-body d-flex flex-column">
+                    	<h3 class="card-title text-center app-text-blue01-site">Initiation aux logiciels numériques</h3>
+                    	<p class="card-text text-center">
+                    		<strong>Thèmes envisagés : dessin 2D, 3D, aborder Linux, ...</strong>
+                    		<br>Précisions à venir sur les modalités
+                    	</p>
+					</div>
+                </div>
+            </div>
+			<div class="col-md-3 mb-3 d-flex align-items-stretch">
+            	<div class="card">
+                	<img src="{{ asset('build/images/event/Machines_Numériques_01.jpg') }}" class="card-img-top img-thumbnail border border-success" alt="fablab">
+                	<div class="card-body d-flex flex-column">
+                    	<h3 class="card-title text-center app-text-blue01-site">Initiation aux machines numériques</h3>
+                    	<p class="card-text text-center">
+                    		<strong>Thèmes envisagés : savoir utiliser, régler une imprimante 3D, une découpe laser, ...</strong>
+                    		<br>Précisions à venir sur les modalités
+                    	</p>
+					</div>
+                </div>
+            </div>
+		</div>
+	</article>
+	{{ parent() }}
+    <footer class="col-md-12" style="height:40px"></footer>
+</section>
+
+{% endblock app_central %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock javascripts %}

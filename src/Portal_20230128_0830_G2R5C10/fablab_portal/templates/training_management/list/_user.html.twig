@@ -1,0 +1,27 @@
+{#
+ * This file is a part of the fablab_ portal package.
+ * 
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : training_management/list/registered.html.twig - date : 26 jan. 2023
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'user' %}
+
+<div class="card text-dark mb-3 border border-info border-3 rounded-3">
+	<div class="card-body">
+	{#
+    {% for key, value in user.attributes %}
+        <li class="small">{{ ('user.ldap.' ~ key) | trans }} : {{ value[0] }}</li>
+    {% endfor %}
+    #}
+    <p class="small">{{ (user['ldap'].attributes.title[0] == 0) ? 'user.ldap.man' | trans : 'user.ldap.woman' | trans}} {{ user['ldap'].attributes.cn[0] }}</p>
+    
+    <li class="small">{{ 'user.ldap.mail' | trans }} : {{ user['ldap'].attributes.mail[0] }}</li>
+    <li class="small">{{ 'user.ldap.mobile' | trans }} : {{ user['ldap'].attributes.mobile[0] }}</li>
+    <li class="small">{{ 'training.prop.registration_date' | trans({}, 'training') }} : {{ user['registrationDate'] | date("d/m/Y") }}</li>
+	</div>
+</div>

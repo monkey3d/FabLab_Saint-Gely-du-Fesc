@@ -1,0 +1,104 @@
+{#
+ * This file is a part of the fablab portal package.
+ *
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : home/equipment.html.twig - date : 29 oct. 2021
+ 
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'app' %}
+
+{% extends 'layout_base.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block app_central %}
+
+<section class="container-fluid">
+	<article>
+	 	<div class="col-md-12 text-center">
+        	<h2 class="app-text-blue01-site"><strong>Imprimante 3D</strong></h2>
+        	<div class="row row-cols-1 row-cols-md-6 justify-content-center">
+            	<div class="card text-center">
+        			<img src="{{ asset('build/images/device/I3D_01.png') }}" class="img-fluid card-img-top img-thumbnail border border-success" alt="fablab">
+        			<div class="card-body">
+            			<h3 class="card-title text-center app-text-blue01-site"><span class="badge bg-info">Prusa</span></h3>
+            			<p class="card-text"><h4>Disponible</h4></p>
+              		</div>
+      			</div>
+      			<div class="card text-center">
+        			<img src="{{ asset('build/images/device/imageEnder7.png') }}" class="img-fluid card-img-top img-thumbnail border border-success" alt="fablab">
+        			<div class="card-body">
+            			<h3 class="card-title text-center app-text-blue01-site"><span class="badge bg-info">Creality3D Ender-7</span></h3>
+            			<p class="card-text"><h4>Disponible</h4></p>
+              		</div>
+      			</div>
+      			<div class="card text-center">
+        			<img src="{{ asset('build/images/device/Phrozen4K-ouverte.jpg') }}" class="img-fluid card-img-top img-thumbnail border border-success" alt="fablab">
+        			<div class="card-body">
+            			<h3 class="card-title text-center app-text-blue01-site"><span class="badge bg-info">Phrozen 4K</span></h3>
+            			<p class="card-text"><h4>Disponible - prêt membre</h4></p>
+              		</div>
+      			</div>
+      			<div class="card text-center">
+        			<img src="{{ asset('build/images/device/Raise3D Pro2 Plus.png') }}" class="img-fluid card-img-top img-thumbnail border border-success" alt="fablab">
+        			<div class="card-body">
+            			<h3 class="card-title text-center app-text-blue01-site"><span class="badge bg-info">Raise3D Pro2 Plus<br>ou Bambu Lab X1</span></h3>
+            			<p class="card-text"><h4>Disponible février 2023</h4></p>
+              		</div>
+      			</div>
+      		</div>
+		</div>
+
+        <hr>
+        <div class="col-md-12 text-center">
+        	<h2 class="app-text-blue01-site"><strong>Découpe Laser</strong></h2>
+        	<div class="row row-cols-1 row-cols-md-6 justify-content-center">
+            	<div class="card text-center">
+        			<img src="{{ asset('build/images/device/eko-14.jpg') }}" class="img-fluid card-img-top img-thumbnail border border-success" alt="fablab">
+        			<div class="card-body">
+            			<h3 class="card-title text-center app-text-blue01-site"><span class="badge bg-info">Laser</span></h3>
+            			<p class="card-text">
+            				<h4>Disponible février 2023</h4>
+            				<h6>EKO 14 - 130 W<br>aire de gravure 1400 x 900 mm</h6>
+            			</p>
+              		</div>
+      			</div>
+      		</div>
+        </div>
+        <hr>
+        <div class="col-md-12 text-center">
+        	<h2 class="app-text-blue01-site"><strong>Impression + Découpe vinyle</strong></h2>
+        	<div class="row row-cols-1 row-cols-md-6 justify-content-center">
+            	<div class="card text-center">
+        			<img src="{{ asset('build/images/device/Vinyle.png') }}" class="img-fluid card-img-top img-thumbnail border border-success" alt="fablab">
+        			<div class="card-body">
+            			<h3 class="card-title text-center app-text-blue01-site"><span class="badge bg-info">Plotter</span></h3>
+            			<p class="card-text"><h4>Disponible février 2023</h4></p>
+              		</div>
+      			</div>
+      		</div>
+        </div>
+        <hr>
+        {#
+        <div class="col-md-12 text-center">
+        	<h2 class="app-text-blue01-site"><strong>Scanner 3D</strong></h2>
+        </div>
+        <hr>
+        #}
+	</article>
+
+</section>
+
+{% endblock app_central %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock javascripts %}

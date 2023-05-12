@@ -1,0 +1,71 @@
+security:
+    # https://symfony.com/doc/current/security/experimental_authenticators.html
+    enable_authenticator_manager: true
+    # https://symfony.com/doc/current/security.html#c-hashing-passwords
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        #users_in_memory: { memory: null } # 25/09/2021 : mise en commentaire
+        #my_ldap:
+            #ldap:
+                #service: Symfony\Component\Ldap\Ldap
+                #base_dn: '%env(resolve:APP_LDAP_BASEDN)%'
+                #search_dn: 'env(APP_LDAP_SEARCHDN)'
+                #search_password: 'env(APP_LDAP_SEARCHPASSWORD)'
+                #default_roles: ROLE_USER
+                #uid_key: uid
+                #extra_fields: ['email']
+        ldap_users:
+            id: App\Security\CustomLdapUserProvider
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            #anonymous: true
+            lazy: true
+            #provider: users_in_memory
+            provider: ldap_users
+            #provider: my_ldap
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                target: homepage
+            guard:
+                authenticators:
+                    - App\Security\LdapFormAuthenticator
+            entry_point: App\Security\LdapFormAuthenticator
+                
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+            #custom_authenticators:
+                #- App\Security\LdapFormAuthenticator
+            form_login_ldap:
+                login_path: app_login
+                check_path: app_login
+                service: Symfony\Component\Ldap\Ldap
+                dn_string: '%env(resolve:APP_LDAP_BASEDN)%'
+                query_string: '(&(mail={username})(memberOf=cn=inetOrgPerson,ou=groups,dc=my-domain,dc=com))'
+                search_dn: '%env(resolve:APP_LDAP_SEARCHDN)%'
+                search_password: '%env(resolve:APP_LDAP_SEARCHPASSWORD)%'
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    role_hierarchy:
+        ROLE_MANAGER:           [ROLE_USER, ROLE_MANAGER]
+        ROLE_ADMIN:             [ROLE_USER, ROLE_ADMIN]
+        ROLE_ALLOWED_TO_SWITCH: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_SUPER_ADMIN:       [ROLE_MANAGER, ROLE_ALLOWED_TO_SWITCH]
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
+        
+        #- { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/(admin|manage/users), roles: 'ROLE_MANAGERS' }
+        #- { path: ^/(add|edit|delete), roles: ROLE_ADMIN, ip: 12.9.0.5 }
+        #- { path: ^/, roles: IS_AUTHENTICATED_REMEMBERED }
+        - { path: '^/', roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: '%env(SECURE_SCHEME)%' } # + 25/01/2022

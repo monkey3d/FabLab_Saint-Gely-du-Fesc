@@ -1,0 +1,15 @@
+#
+
+controllers:
+    resource: ../../src/Controller/
+    type: annotation
+    prefix: '{_locale}'
+
+# 06/03/2022 : https://stackoverflow.com/questions/62003635/disable-route-prefix-for-only-one-route
+#sitemap:
+    #resource: ../../src/Controller/SitemapController.php
+    #type: annotation
+
+kernel:
+    resource: ../../src/Kernel.php
+    type: annotation

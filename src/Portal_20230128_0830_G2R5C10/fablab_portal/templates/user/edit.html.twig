@@ -1,0 +1,116 @@
+{#
+ * This file is a part of the fablab portal package.
+ *
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : users/edit.html.twig - date : 16 jan. 2023
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'user' %}
+
+{% extends 'layout_base.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block inner_central_app_central %}
+
+<aside id="inner_central" class="col-md-10">
+{% set route, role, button_name =
+    ['ldap_members_list'],
+	['ROLE_USER'],
+	[app_buttons['list']]
+%}
+
+{{ include ("common/_header.html.twig",
+    	{	'domain': 'user',
+    		'route_root': 'user_profile',
+    	    'module': "user.module.name" | trans,
+    	    'title': title,
+    	    'logo': 'app/Logo_FabLab_SG03.png',
+    	    'alt_logo': '' | trans,
+    	})
+}}
+
+	{# <h2 class="app-text-blue01-site"><strong>{{ title }}</strong></h2> #}
+    <div class="form-group">
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    	<div class="col-md-12 text-center">
+    		{{ action('submit', 'validate', "", {}) | raw }}
+    	</div>
+    	<div class="row">
+        	<div class="col-md-2 text-dark bg-secondary mb-3 border border-info border-3 rounded-">
+            {{ form_errors(form.title) }}
+            {{ form_label(form.title, 'user.ldap.title' | trans) }}	
+            {{ form_widget(form.title) }}
+            </div>
+            {#
+            <div class="col-md-3 text-dark bg-secondary mb-3 border border-info border-3 rounded-">
+            {{ form_errors(form.cn) }}
+            {{ form_label(form.cn, 'user.ldap.cn' | trans) }}	
+            {{ form_widget(form.cn) }}
+            </div>
+            #}
+            <div class="col-md-2 text-dark bg-secondary mb-3 border border-info border-3 rounded-">
+            {{ form_errors(form.sn) }}
+            {{ form_label(form.sn, 'user.ldap.sn' | trans) }}	
+            {{ form_widget(form.sn) }}
+            </div>
+            <div class="col-md-2 text-dark bg-secondary mb-3 border border-info border-3 rounded-">
+            {{ form_errors(form.givenName) }}
+            {{ form_label(form.givenName, 'user.ldap.givenName' | trans) }}	
+            {{ form_widget(form.givenName) }}
+            </div>
+            <div class="col-md-3 text-dark bg-secondary mb-3 border border-info border-3 rounded-">
+            {{ form_errors(form.displayName) }}
+            {{ form_label(form.displayName, 'user.ldap.displayName' | trans) }}	
+            {{ form_widget(form.displayName) }}
+            </div>
+            <div class="col-md-3 text-dark bg-secondary mb-3 border border-info border-3 rounded-">
+            {{ form_errors(form.uid) }}
+            {{ form_label(form.uid, 'user.ldap.uid' | trans) }}	
+            {{ form_widget(form.uid) }}
+            </div>
+    	</div>
+    		
+    	<div class="row">
+    		<div class="col-md-3 text-dark bg-secondary mb-3 border border-info border-3 rounded-3">
+            {{ form_errors(form.mail) }}
+            {{ form_label(form.mail, 'user.ldap.mail' | trans) }}	
+            {{ form_widget(form.mail) }}
+            </div>
+            <div class="col-md-3 text-dark bg-secondary mb-3 border border-info border-3 rounded-">
+            {{ form_errors(form.homePhone) }}
+            {{ form_label(form.homePhone, 'user.ldap.homePhone' | trans) }}	
+            {{ form_widget(form.homePhone) }}
+            </div>
+            <div class="col-md-3 text-dark bg-secondary mb-3 border border-info border-3 rounded-">
+            {{ form_errors(form.mobile) }}
+            {{ form_label(form.mobile, 'user.ldap.mobile' | trans) }}	
+            {{ form_widget(form.mobile) }}
+            </div>
+            
+    	</div>
+    	
+    	<div class="row">
+    		<div class="col-md-6 text-dark bg-secondary mb-3 border border-info border-3 rounded-">
+            {{ form_errors(form.homePostalAddress) }}
+            {{ form_label(form.homePostalAddress, 'user.ldap.homePostalAddress' | trans) }}	
+            {{ form_widget(form.homePostalAddress) }}
+            </div>
+    	</div>
+    	
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    </div>
+</aside>
+
+{% endblock inner_central_app_central %}
+	
