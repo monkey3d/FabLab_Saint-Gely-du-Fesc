@@ -1,0 +1,29 @@
+{#
+ * This file is a part of the fablab portal package.
+ *
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : training_management/_list.html.twig - date : 21 jan. 2023
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'training' %}
+
+<div class="card text-dark mb-3 border border-info border-3 rounded-3">
+	<div class="card-body">
+		<h5 class="card-title">{{ train.title }}</h5>
+		<p>{{ train.description | raw }}</p>
+		<ul>
+			<li>{{ 'training.prop.place' | trans }} : {{ train.place }}</li>
+			<li>{{ 'training.prop.date_start_time' | trans }} : {{ train.dateStartTime  |date("d/m/Y - H:i")}}</li>
+			<li>{{ 'training.prop.duration' | trans }} : {{ train.duration | date("H:i") }}</li>
+			<li>{{ 'training.prop.number_available' | trans }} : {{ train.numberAvailable == 0 ? "training.msg.full" | trans : train.numberAvailable }}</li>
+			<li>{{ 'training.prop.former' | trans }} : {{ train.former }}</li>
+			<li>{{ 'training.prop.prerequisite' | trans }} : {{ train.prerequisite }}</li>
+			<li>{{ 'training.prop.cost' | trans }} : {{ train.cost|format_currency('EUR') }}</li>
+		</ul>
+		{{ train.numberAvailable == 0 ? "" : app_action('button', 'register', 'training_management_register', {'id': train.id}, '') | raw }}		
+	</div>		
+</div>

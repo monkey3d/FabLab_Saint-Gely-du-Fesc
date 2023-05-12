@@ -1,0 +1,37 @@
+{#
+ * This file is a part of the shu-v2 package.
+ * SHU : Smart Home Ultimate
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : common/_paging.html.twig - date : 30 mai 2022
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+<nav aria-label="Pagination navigation">
+{% if objects is defined and objects is not empty %}
+	{% if last_page > 1 %}
+	{% if param is not defined %}
+		{% set param = '' %}
+	{% endif %}
+    <ul class="pagination pagination-sm justify-content-center">
+    	<li class="page-item"><a class="page-link" href="{{ path(route, {'page': 1,'param': param} ) }}">1</a></li>
+		<li class="page-item"><a class="page-link" href="{{ path(route, {'page': max(current_page-10,1),'param': param} ) }}">&laquo;</a></li>
+		{% for p in range(max(current_page-10,1), min(current_page+10, last_page)) %}
+			{% if p == current_page %}
+				<li class="page-item active">
+			{% else %}
+				<li>
+			{% endif %}
+				<a class="page-link" href="{{ path(route, {'page': p,'param': param}) }}">{{ p }}</a>
+			</li>
+		{% endfor %}
+		<li class="page-item"><a class="page-link" href="{{ path(route, {'page': min(current_page+10,last_page),'param': param} ) }}">&raquo;</a></li>
+		<li class="page-item"><a class="page-link" href="{{ path(route, {'page': last_page,'param': param}) }}">{{ last_page }}</a></li>
+    </ul>
+  {% endif %}
+{% else %}
+	{{ include('common/_no_items.html.twig') }}
+{% endif %}
+</nav>

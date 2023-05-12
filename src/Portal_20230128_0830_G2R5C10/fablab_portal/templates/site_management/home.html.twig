@@ -1,0 +1,49 @@
+{#
+ * This file is a part of the fablab_ portal package.
+ * 
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : site_management/home.html.twig - date : 7 jan. 2023
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'site' %}
+
+{% extends 'layout_base.html.twig' %}
+
+{% block title %}{{ 'site.module.name' | trans | title }}{% endblock %}
+
+{% block head %}
+	{{ parent() }}
+	<meta name="description" content="L'espace de configuration du site web du FabLab.">
+{% endblock head %}
+
+{% block stylesheets %}{{ parent() }}{% endblock %}
+
+{% block app_central %}
+
+{% set route, role, button_name =
+    [],
+	[],
+	[]
+%}
+
+<section class="container-fluid">
+	<article class="container-fluid">
+		{{ form_start(form) }}
+		{{ form_errors(form) }}
+		<div class="col-md-12 text-center">
+			{{ app_action('submit', 'validate', "", {}) | raw }}
+		</div>
+		<div class="col-md-2 mb-3 border border-info border-3 rounded-3">
+            {{ form_errors(form.openingStatus) }}
+	        {{ form_label(form.openingStatus, 'site.prop.opening_status' | trans) }}	
+	        {{ form_widget(form.openingStatus) }}
+	    </div>
+	    {{ form_rest(form) }}
+	    {{ form_end(form) }}
+	</article>
+</section>
+{% endblock app_central %}

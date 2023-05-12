@@ -1,0 +1,34 @@
+{#
+ * This file is a part of the fablab portal package.
+ *
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : layout_base.html.twig - date : 3 oct. 2021
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% extends "base.html.twig" %}
+
+{% block head %}{{ parent() }}{% endblock head %}
+
+{% block app_header %}
+	{{ parent() }}
+{% endblock app_header %}
+
+{% block app_horizontal_menu %}
+    {{ parent() }}
+{% endblock app_horizontal_menu %}
+	
+{% block app_central %}
+    {{ parent() }}
+{% endblock app_central %}
+
+{% block app_footer %}
+	{{ parent() }}
+{% endblock app_footer %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock javascripts %}

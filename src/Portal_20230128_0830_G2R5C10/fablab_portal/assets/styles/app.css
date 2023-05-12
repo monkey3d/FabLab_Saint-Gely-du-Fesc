@@ -1,0 +1,29 @@
+/*
+ * This file is a part of the fablab portal package.
+ * 
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ * 
+ * file : assets/styles/app.css - date : 15 sept. 2021
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+.app-bg-blue01-site {
+	background-color: #132c86;
+}
+.app-bg-green01-site {
+    background-color: #02a538;
+}
+
+.app-text-blue01-site {
+	color: #132c86;
+}
+
+.app-text-green01-site {
+	color: #02a538;
+}
+
+.app-text-shadow {
+	text-shadow: 4px 1px 3px #000000;
+}

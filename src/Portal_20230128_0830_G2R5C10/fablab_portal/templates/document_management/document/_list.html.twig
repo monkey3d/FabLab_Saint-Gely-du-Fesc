@@ -1,0 +1,22 @@
+{#
+ * This file is a part of the fablab_ portal package.
+ * 
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : document_management/document/_list.html.twig - date : 19 oct. 2022
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% if objects is not empty %}
+<div class="row">
+{%  for document in objects %}
+	<div class="col-md-2 mb-3 d-flex align-items-stretch">
+		{{ include ('document_management/document/_generic.html.twig', {'mime': document.documentMimeType}) }}
+	</div>
+{% endfor %}
+</div>
+{% else %}
+	{{ include ('common/_no_items.html.twig') }}
+{% endif %}

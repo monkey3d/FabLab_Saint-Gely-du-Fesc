@@ -1,0 +1,72 @@
+{#
+ * This file is a part of the fablab portal package.
+ *
+ * © Claude Migne <monkey3d@wanadoo.fr>
+ *
+ * file : home/documentary.html.twig - date : 14 jan. 2022
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'app' %}
+
+{% extends 'layout_base.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block app_central %}
+<section class="container-fluid">
+	<article class="container-fluid">
+		<header class="col-md-12 text-center">
+        	<h2 class="app-text-blue01-site"><strong>{{ documentary['title'] }}</strong></h2>
+        </header>
+        <div class="row justify-content-center">
+        	<ol class="list-group">
+        		{% for meeting in meetings %}
+				<li class="list-group-item d-flex justify-content-between align-items-start">
+    				<div class="ms-2 me-auto">
+      					<div class="fw-bold">{{ meeting.title }}</div>
+  						<ol class="list-group list-group-horizontal">
+  						{% for document in meeting.documents %}
+  							<li class="list-group-item d-flex align-items-start">
+  							{% if document.href and document.href[(document.href|length-3):3] == 'pdf' %}
+          						<h4>
+          							<a href="{{ path('read', { 'document': document.href }) }}" onclick="window.open(this.href); return false;">
+          								<i class="bi bi-file-arrow-down-fill"></i>
+          							</a>
+          						</h4>
+      					    {% endif %}
+      					    {% if document.href and document.href[(document.href|length-3):3] == 'mp4' %}
+          						<h4>
+          							<a href="{{ path('watch', { 'document': document.href }) }}" onclick="window.open(this.href); return false;">
+    									<i class="bi bi-film"></i>
+    								</a>
+          							
+          						</h4>
+      					    {% endif %}
+      					    	<p class="text-center">
+  						    	<span class="app-text-green01-site">{{ document.title }}</span><br>
+  						    	<span class="app-text-blue01-site">{{ document.author }}</span>
+  						    	</p>
+  						    </li>
+  						{%  endfor %}
+  						</ol>
+      				</div>
+      			</li>
+        		{% endfor %}
+      		</ol>
+        </div>
+    </article>
+        <footer class="col-md-12" style="height:40px"></footer>
+</section>
+
+{% endblock app_central %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock javascripts %}
