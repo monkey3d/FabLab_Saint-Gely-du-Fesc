@@ -2,16 +2,14 @@
 
 ## Pré-requis:
 
-* Symfony : Avoir la version de Symfony (Lien pour le télécharger : https://symfony.com/download)
-* OpenLdap : Avoir la version de OpenLdap (Lien pour le télécharger  et le configurer : https://www.ibm.com/docs/fr/rpa/23.0?topic=ldap-installing-configuring-openldap#installing-openldap-on-linux
-* Dolibarr :  Avoir la version de Dolibarr (Lien pour le télécharger: https://sourceforge.net/projects/dolibarr/files/Dolibarr%20installer%20for%20Windows%20%28DoliWamp%29/
+* Symfony : Avoir la version 5.4 de Symfony (Lien pour le télécharger : https://github.com/symfony/symfony/tree/5.4)
+* OpenLdap : Avoir la version 2.6.4 de OpenLdap (Lien pour le télécharger : https://www.openldap.org/software/download/ )
+* Dolibarr :  Avoir la version 16.0.3 de Dolibarr (Lien pour le télécharger: https://www.dolibarr.org/dolibarr-erp-crm-v1603-maintenance-release-for-branch-160-is-available.php?lang=fr&l=fr )
 
 ## Consigne :
 ### Sur votre PC :
 + 1: ouvrir une invite de  commande a l'emplacement désiré ou s'y déplacer.
-
 + 2: git init
-
 + 3: git pull https://github.com/monkey3d/FabLab_Saint-Gely-du-Fesc.git
 + 4: Vous pouvez Développer.
 + 5: Quand vous avez fini, git branch Nom_de_la_branche (ex : G0R0C0)
