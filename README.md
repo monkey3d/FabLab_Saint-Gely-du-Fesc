@@ -13,7 +13,7 @@
 + 3: git pull https://github.com/monkey3d/FabLab_Saint-Gely-du-Fesc.git
 + 4: Vous pouvez Développer.
 + 5: Quand vous avez fini, git branch Nom_de_la_branche (ex : G0R0C0)
-+ 6: Puis git checkout Nom_de_la_branche crée précédemment.
++ 6: Puis git checkout Nom_de_la_branche créée précédemment.
 + 7: git add le dossier src 
 + 8: git commit -m 'Commentaire pour le commit (ex: Version G0R0C0)'
 + 9: git remote add origin https://github.com/monkey3d/FabLab_Saint-Gely-du-Fesc.git.
@@ -21,8 +21,8 @@
 
 ### Sur github :
 
-Normalement sur github une demande de pull est apparue et une branche a était crée avec votre code.
+Normalement sur github une demande de pull est apparue et une branche a était créée avec votre code.
 
 * 11: Faire la demande de push
-* 12: Puis merge la branche crée avec la branche main
-* 13: Créer une release sur la branche crée pour afficher la dernière version du code.
+* 12: Puis merge la branche créée avec la branche main
+* 13: Créer une release sur la branche créée pour afficher la dernière version du code.
