@@ -9,15 +9,14 @@
 ## Consigne :
 ### Sur votre PC :
 + 1: ouvrir une invite de  commande à l'emplacement désiré ou s'y déplacer.
-+ 2: git init
-+ 3: git pull https://github.com/monkey3d/FabLab_Saint-Gely-du-Fesc.git
-+ 4: Vous pouvez Développer.
-+ 5: Quand vous avez fini, git branch Nom_de_la_branche (ex : G0R0C0)
-+ 6: Puis git checkout Nom_de_la_branche créée précédemment.
-+ 7: git add le dossier src 
-+ 8: git commit -m 'Commentaire pour le commit (ex: Version G0R0C0)'
-+ 9: git remote add origin https://github.com/monkey3d/FabLab_Saint-Gely-du-Fesc.git.
-+ 10: git push -u origin Nom_de_la_branche
++ 2: git clone https://github.com/monkey3d/FabLab_Saint-Gely-du-Fesc.git
++ 3: Vous pouvez Développer.
++ 4: Quand vous avez fini, git branch Nom_de_la_branche (ex : G0R0C0)
++ 5: Puis git checkout Nom_de_la_branche créée précédemment.
++ 6: git add le dossier src 
++ 7: git commit -m 'Commentaire pour le commit (ex: Version G0R0C0)'
++ 8: git remote add origin https://github.com/monkey3d/FabLab_Saint-Gely-du-Fesc.git.
++ 9: git push -u origin Nom_de_la_branche
 
 ### Sur github :
 
