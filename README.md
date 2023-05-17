@@ -20,7 +20,7 @@
 
 ### Sur github :
 
-Normalement sur github une demande de pull est apparue et une branche a était créée avec votre code.
+Normalement sur github une demande de pull est apparue et une branche a été créée avec votre code.
 
 * 11: Faire la demande de push
 * 12: Puis merge la branche créée avec la branche main
