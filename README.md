@@ -22,6 +22,37 @@
 
 Normalement sur github une demande de pull est apparue et une branche a été créée avec votre code.
 
-* 11: Faire la demande de push
-* 12: Puis merge la branche créée avec la branche main
-* 13: Créer une release sur la branche créée pour afficher la dernière version du code.
+* 10: Faire la demande de push
+* 11: Puis merge la branche créée avec la branche main
+* 12: Créer une release sur la branche créée pour afficher la dernière version du code.
+
+## Post-requis:
+
+* 14: Paramétrer les variables du fichier .env avec vos informations.
+---
+    Liste des variables à renseigner :
+    APP_SECRET :
+
+    DATABASE_URL : (URL de la BD du site web)
+    DATABASE_DOLIBARR_URL : (URL de la BD dolibarr)
+
+    APP_NAME :
+    APP_ORGANIZATION :
+    APP_PATH_ROOT :
+    APP_SITE :
+    APP_FACEBOOK :
+    APP_INSTAGRAM :
+    APP_YOUTUBE :
+
+    LDAP_HOST :
+    LDAP_PORT :
+    LDAP_ENCRYPTION :
+    LDAP_BASEDN :
+    LDAP_SEARCHDN :
+    LDAP_SEARCHPASSWORD :
+    LDAP_URL :
+---
+
+* 15: Créer la base de donnée pour le portail.
+* 16: Migrer les données dans la base donnée ou remplir avec vos données.
+* 
