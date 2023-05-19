@@ -5,6 +5,7 @@
 * Symfony : Avoir la version 5.4 de Symfony (Lien pour la télécharger : https://github.com/symfony/symfony/tree/5.4)
 * OpenLdap : Avoir la version 2.6.4 de OpenLdap (Lien pour la télécharger : https://www.openldap.org/software/download/ )
 * Dolibarr :  Avoir la version 16.0.3 de Dolibarr (Lien pour la télécharger: https://www.dolibarr.org/dolibarr-erp-crm-v1603-maintenance-release-for-branch-160-is-available.php?lang=fr&l=fr )
+* Serveur Linux distribution Fedora.
 
 ## Consigne :
 ### Sur votre PC :
@@ -31,10 +32,13 @@ Normalement sur github une demande de pull est apparue et une branche a été cr
 * 14: Paramétrer les variables du fichier .env avec vos informations.
 ---
     Liste des variables à renseigner :
+
     APP_SECRET :
 
-    DATABASE_URL : (URL de la BD du site web)
+    DATABASE_URL : (information de connexion a la base de donnée)
     DATABASE_DOLIBARR_URL : (URL de la BD dolibarr)
+
+    Remplir les informations si dessous avec les informations pour Symfony.
 
     APP_NAME :
     APP_ORGANIZATION :
@@ -44,6 +48,8 @@ Normalement sur github une demande de pull est apparue et une branche a été cr
     APP_INSTAGRAM :
     APP_YOUTUBE :
 
+    Remplir les informations si dessous avec les informations pour l'openldap.
+
     LDAP_HOST :
     LDAP_PORT :
     LDAP_ENCRYPTION :
@@ -52,7 +58,27 @@ Normalement sur github une demande de pull est apparue et une branche a été cr
     LDAP_SEARCHPASSWORD :
     LDAP_URL :
 ---
-
 * 15: Créer la base de donnée pour le portail.
+  * installer Doctrine : (Exécuter ses deux commandes dans votre projet symfony) 
+    - composer require symfony/orm-pack 
+    - composer require --dev symfony/maker-bundle
+    Doc :(https://symfony.com/doc/current/doctrine.html#installing-doctrine) 
+  * Créer la base de donnée : (Exécuter la commande dans votre projet symfony)
+    - doctrine:database:create
+---
 * 16: Migrer les données dans la base donnée ou remplir avec vos données.
-* 
+  * Créée vos entitées (table) avec :
+    - make:entity  
+  * Migret vos entitées :
+    - make:migration
+    - doctrine:migrations:migrate
+---
+
+### A cette étape la base de donnée pour symfont est créée. Il ne manque plus a faire la base de donnée OpenlDap.
+
+* 17:Démarer le service Openldap:
+    - sudo systemctl start slapd
+    - sudo systemctl enable slapd
+* 18:Configuration de l'openldap:
+
+  
