@@ -38,7 +38,7 @@ Normalement sur github une demande de pull est apparue et une branche a été cr
     DATABASE_URL : (information de connexion a la base de donnée)
     DATABASE_DOLIBARR_URL : (URL de la BD dolibarr)
 
-    Remplir les informations si dessous avec les informations pour Symfony.
+    Remplir les informations ci-dessous avec les informations pour Symfony.
 
     APP_NAME :
     APP_ORGANIZATION :
@@ -48,7 +48,7 @@ Normalement sur github une demande de pull est apparue et une branche a été cr
     APP_INSTAGRAM :
     APP_YOUTUBE :
 
-    Remplir les informations si dessous avec les informations pour l'openldap.
+    Remplir les informations ci-dessous avec les informations pour l'openldap.
 
     LDAP_HOST :
     LDAP_PORT :
@@ -58,23 +58,23 @@ Normalement sur github une demande de pull est apparue et une branche a été cr
     LDAP_SEARCHPASSWORD :
     LDAP_URL :
 ---
-* 15: Créer la base de donnée pour le portail.
+* 15: Créer la base de données pour le portail.
   * installer Doctrine : (Exécuter ses deux commandes dans votre projet symfony) 
     - composer require symfony/orm-pack 
     - composer require --dev symfony/maker-bundle
     Doc :(https://symfony.com/doc/current/doctrine.html#installing-doctrine) 
-  * Créer la base de donnée : (Exécuter la commande dans votre projet symfony)
+  * Créer la base de données : (Exécuter la commande dans votre projet symfony)
     - doctrine:database:create
 ---
 * 16: Migrer les données dans la base donnée ou remplir avec vos données.
-  * Créée vos entitées (table) avec :
+  * Créée vos entités (table) avec :
     - make:entity  
-  * Migret vos entitées :
+  * Migret vos entités :
     - make:migration
     - doctrine:migrations:migrate
 ---
 
-### A cette étape la base de donnée pour symfont est créée. Il ne manque plus a faire la base de donnée OpenlDap.
+### A cette étape la base de données pour symfony est créée. Il ne manque plus à faire la base de données OpenlDap.
 
 * 17:Démarer le service Openldap:
     - sudo systemctl start slapd
