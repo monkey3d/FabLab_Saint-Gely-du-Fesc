@@ -2,10 +2,10 @@
 
 ## Pré-requis:
 
-* Symfony : Avoir la version 5.4 de Symfony (Lien pour la télécharger : https://github.com/symfony/symfony/tree/5.4)
+* Symfony : Avoir la version 5.4 de Symfony (Lien pour la télécharger : https://symfony.com/doc/5.4/setup.html)
 * OpenLdap : Avoir la version 2.6.4 de OpenLdap (Lien pour la télécharger : https://www.openldap.org/software/download/ )
 * Dolibarr :  Avoir la version 16.0.3 de Dolibarr (Lien pour la télécharger: https://www.dolibarr.org/dolibarr-erp-crm-v1603-maintenance-release-for-branch-160-is-available.php?lang=fr&l=fr )
-* Serveur Linux distribution Fedora.
+* Serveur Linux distribution Fedora version 37.
 
 ## Consigne :
 ### Sur votre PC :
@@ -35,50 +35,45 @@ Normalement sur github une demande de pull est apparue et une branche a été cr
 
     APP_SECRET :
 
-    DATABASE_URL : (information de connexion a la base de donnée)
-    DATABASE_DOLIBARR_URL : (URL de la BD dolibarr)
+    DATABASE_URL : "information de connexion a la base de donnée"
+    DATABASE_DOLIBARR_URL : URL de la BD dolibarr
 
-    Remplir les informations ci-dessous avec les informations pour Symfony.
+    Remplir les informations si dessous avec les informations pour Symfony.
 
-    APP_NAME :
-    APP_ORGANIZATION :
-    APP_PATH_ROOT :
-    APP_SITE :
-    APP_FACEBOOK :
-    APP_INSTAGRAM :
-    APP_YOUTUBE :
+    APP_NAME="Portail"
+    APP_ORGANIZATION="FabLab"
+    APP_PATH_ROOT="fablab_portal/public"
+    APP_SITE="le nom de votre site"
+    APP_FACEBOOK : url de votre compte facebook
+    APP_INSTAGRAM : url de votre compte instagram
+    APP_YOUTUBE : url de votre compte youtube
 
-    Remplir les informations ci-dessous avec les informations pour l'openldap.
+    Remplir les informations si dessous avec les informations pour l'openldap.
 
-    LDAP_HOST :
-    LDAP_PORT :
-    LDAP_ENCRYPTION :
-    LDAP_BASEDN :
-    LDAP_SEARCHDN :
-    LDAP_SEARCHPASSWORD :
-    LDAP_URL :
+    LDAP_HOST="votre host"
+    LDAP_PORT="le port d'écoute - par défaut 389"
+    LDAP_ENCRYPTION="votre type d'encryptage"
+    LDAP_BASEDN="dc=votre domaine,dc=com"
+    LDAP_SEARCHDN="cn=xxxx,dc=votre domaine,dc=com"
+    LDAP_SEARCHPASSWORD="votre password pour le ldap"
+    LDAP_URL="ldap://ldap:port d'écoute"
 ---
-* 15: Créer la base de données pour le portail.
+* 15: Créer la base de donnée pour le portail.
   * installer Doctrine : (Exécuter ses deux commandes dans votre projet symfony) 
     - composer require symfony/orm-pack 
     - composer require --dev symfony/maker-bundle
     Doc :(https://symfony.com/doc/current/doctrine.html#installing-doctrine) 
-  * Créer la base de données : (Exécuter la commande dans votre projet symfony)
+  * Créer la base de donnée : (Exécuter la commande dans votre projet symfony)
     - doctrine:database:create
 ---
 * 16: Migrer les données dans la base donnée ou remplir avec vos données.
-  * Créée vos entités (table) avec :
-    - make:entity  
-  * Migret vos entités :
-    - make:migration
-    - doctrine:migrations:migrate
+  Executé la commande : 
+    - php bin/console doctrine:schema:update --complete --force
 ---
 
-### A cette étape la base de données pour symfony est créée. Il ne manque plus à faire la base de données OpenlDap.
+### A cette étape la base de donnée pour symfony est créée.Configuration du OpenLdap
 
 * 17:Démarer le service Openldap:
     - sudo systemctl start slapd
     - sudo systemctl enable slapd
 * 18:Configuration de l'openldap:
-
-  
