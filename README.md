@@ -2,10 +2,10 @@
 
 ## Pré-requis:
 
+* Serveur Linux distribution Fedora version 37.
 * Symfony : Avoir la version 5.4 de Symfony (Lien pour la télécharger : https://symfony.com/doc/5.4/setup.html)
 * OpenLdap : Avoir la version 2.6.4 de OpenLdap (Lien pour la télécharger : https://www.openldap.org/software/download/ )
 * Dolibarr :  Avoir la version 16.0.3 de Dolibarr (Lien pour la télécharger: https://www.dolibarr.org/dolibarr-erp-crm-v1603-maintenance-release-for-branch-160-is-available.php?lang=fr&l=fr )
-* Serveur Linux distribution Fedora version 37.
 * Composer : sudo dnf install composer.
 
 ## Consigne :
