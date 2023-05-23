@@ -34,10 +34,10 @@ Normalement sur github une demande de pull est apparue et une branche a été cr
 ---
     Liste des variables à renseigner :
 
-    APP_SECRET :
+    APP_SECRET=
 
-    DATABASE_URL : "information de connexion a la base de donnée"
-    DATABASE_DOLIBARR_URL : URL de la BD dolibarr
+    DATABASE_URL="information de connexion a la base de donnée"
+    DATABASE_DOLIBARR_URL="URL de la BD dolibarr"
 
     Remplir les informations si dessous avec les informations pour Symfony.
 
@@ -45,9 +45,9 @@ Normalement sur github une demande de pull est apparue et une branche a été cr
     APP_ORGANIZATION="FabLab"
     APP_PATH_ROOT="fablab_portal/public"
     APP_SITE="le nom de votre site"
-    APP_FACEBOOK : url de votre compte facebook
-    APP_INSTAGRAM : url de votre compte instagram
-    APP_YOUTUBE : url de votre compte youtube
+    APP_FACEBOOK="url de votre compte facebook"
+    APP_INSTAGRAM="url de votre compte instagram"
+    APP_YOUTUBE="url de votre compte youtube"
 
     Remplir les informations si dessous avec les informations pour l'openldap.
 
@@ -59,11 +59,7 @@ Normalement sur github une demande de pull est apparue et une branche a été cr
     LDAP_SEARCHPASSWORD="votre password pour le ldap"
     LDAP_URL="ldap://ldap:port d'écoute"
 ---
-* 15: Créer la base de donnée pour le portail.
-  * installer Doctrine : (Exécuter ses deux commandes dans votre projet symfony) 
-    - composer require symfony/orm-pack 
-    - composer require --dev symfony/maker-bundle
-    Doc :(https://symfony.com/doc/current/doctrine.html#installing-doctrine) 
+* 15: Créer la base de donnée pour le portail. 
   * Créer la base de donnée : (Exécuter la commande dans votre projet symfony)
     - doctrine:database:create
 ---
