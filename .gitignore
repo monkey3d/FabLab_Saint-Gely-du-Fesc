@@ -6,3 +6,5 @@ nohup.out
 *.env*
 #
 Version*
+#
+*.mp4
